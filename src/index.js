@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Entry from './components/Entry';
 
 import './styles/app.css';
 
-const App = () => (
-  <div></div>
-);
-
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<Entry />, document.getElementById('app'));
