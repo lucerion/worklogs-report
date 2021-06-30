@@ -2,18 +2,20 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
-const Entry = () => {
-  const [state, setState] = React.useState({
-    timeSpent: '8h',
-    category: 'new-feature',
-    dateStarted: new Date().toLocaleDateString(),
-  });
+const Entry = ({ id, timeSpent, category, dateStarted, onChange, onRemove }) => {
+  const [state, setState] = React.useState({ id, timeSpent, category, dateStarted });
 
-  const onInputChange = (event) => setState({...state, [event.target.name]: event.target.value });
+  const onInputChange = (event) => {
+    const newState = {...state, [event.target.name]: event.target.value };
+
+    setState(newState);
+    onChange(newState);
+  };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container alignItems="center" spacing={2}>
       <Grid item xs={1}>
         <TextField
           label="Time spent"
@@ -61,6 +63,9 @@ const Entry = () => {
           value={state.description}
           onChange={onInputChange}
         />
+      </Grid>
+      <Grid item xs={1}>
+        <Button variant="contained" color="secondary" onClick={() => onRemove(state)}>x</Button>
       </Grid>
     </Grid>
   );

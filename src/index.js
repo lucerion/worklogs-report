@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Entry from './components/Entry';
+import EntryList from './components/EntryList';
 
 import './styles/app.css';
 
-ReactDOM.render(<Entry />, document.getElementById('app'));
+ReactDOM.render(<EntryList />, document.getElementById('app'));
