@@ -38,14 +38,12 @@ const EntryList = () => {
   );
 
   return (
-    <React.Fragment>
-      <Grid container spacing={2}>
-        <Grid item xs={1}>
-          <Button variant="contained" color="primary" onClick={addEntry}>Add</Button>
-        </Grid>
-      </Grid>
+    <Grid container item spacing={4}>
       {renderEntries()}
-    </React.Fragment>
+      <Grid item xs={2}>
+        <Button fullWidth variant="contained" color="primary" onClick={addEntry}>Add worklog</Button>
+      </Grid>
+    </Grid>
   );
 };
 
