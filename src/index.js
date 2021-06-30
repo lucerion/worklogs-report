@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import EntryList from './components/EntryList';
+import Tabs from './components/Tabs';
 
 import './styles/app.css';
 
-ReactDOM.render(<EntryList />, document.getElementById('app'));
+ReactDOM.render(<Tabs />, document.getElementById('app'));

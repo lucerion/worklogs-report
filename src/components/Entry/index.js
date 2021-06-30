@@ -15,7 +15,7 @@ const Entry = ({ id, timeSpent, category, dateStarted, onChange, onRemove }) => 
   };
 
   return (
-    <Grid container alignItems="center" spacing={2}>
+    <Grid container item alignItems="center" spacing={2}>
       <Grid item xs={1}>
         <TextField
           label="Time spent"
@@ -65,7 +65,7 @@ const Entry = ({ id, timeSpent, category, dateStarted, onChange, onRemove }) => 
         />
       </Grid>
       <Grid item xs={1}>
-        <Button variant="contained" color="secondary" onClick={() => onRemove(state)}>x</Button>
+        <Button variant="outlined" color="secondary" size="large" onClick={() => onRemove(state)}>x</Button>
       </Grid>
     </Grid>
   );
