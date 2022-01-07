@@ -41,7 +41,7 @@ const EntryList = () => {
     <Grid container item spacing={4}>
       {renderEntries()}
       <Grid item xs={2}>
-        <Button fullWidth variant="contained" color="primary" onClick={addEntry}>Add worklog</Button>
+        <Button fullWidth variant="outlined" color="primary" size="large" onClick={addEntry}>Add worklog</Button>
       </Grid>
     </Grid>
   );

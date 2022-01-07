@@ -3,7 +3,6 @@ import Paper from '@material-ui/core/Paper';
 import { default as BaseTabs } from '@material-ui/core/Tabs';
 import { default as BaseTab } from '@material-ui/core/Tab';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import EntryList from '../EntryList';
 import Tab from '../Tab';
 
@@ -28,7 +27,6 @@ const Tabs = () => {
         <EntryList />
       </Tab>
       <Tab xs={2} value={currentTab} index={1} >
-        <Button fullWidth variant="contained" color="primary">Generate report</Button>
       </Tab>
     </Grid>
   );
