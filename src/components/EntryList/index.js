@@ -11,7 +11,7 @@ const EntryList = ({ worklogs, addWorklog, changeWorklog, deleteWorklog }) => {
   );
 
   return (
-    <Grid container item spacing={4}>
+    <Grid container spacing={4}>
       {renderEntries()}
       <Grid item xs={2}>
         <Button fullWidth variant="outlined" color="primary" size="large" onClick={addWorklog}>Add worklog</Button>
