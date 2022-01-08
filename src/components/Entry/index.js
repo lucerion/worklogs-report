@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
-const Entry = ({ id, timeSpent, category, dateStarted, onChange, onRemove }) => {
-  const [state, setState] = React.useState({ id, timeSpent, category, dateStarted });
+const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
+  const [state, setState] = React.useState({ id, timeSpent, category, dateStarted, description });
 
   const onInputChange = (event) => {
     const newState = {...state, [event.target.name]: event.target.value };
