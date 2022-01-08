@@ -1,6 +1,7 @@
 import React from 'react';
 import Provider from '../../providers';
-import Tabs from '../../components/Tabs';
+import Tabs from '../Tabs';
+import './app.css';
 
 const App = () => (
   <Provider>

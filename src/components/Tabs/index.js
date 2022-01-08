@@ -5,7 +5,7 @@ import { default as BaseTab } from '@material-ui/core/Tab';
 import Grid from '@material-ui/core/Grid';
 import Tab from '../Tab';
 import EntryList from '../EntryList';
-import Report from '../../containers/Report';
+import Report from '../Report';
 import Context from '../../contexts';
 
 const Tabs = () => {
