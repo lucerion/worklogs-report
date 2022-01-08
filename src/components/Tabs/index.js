@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Tab from '../Tab';
 import EntryList from '../EntryList';
 import Report from '../Report';
-import Context from '../../contexts';
+import { Consumer } from '../../store';
 
 const Tabs = () => {
   const [state, setState] = React.useState({ currentTab: 0 });
@@ -16,7 +16,7 @@ const Tabs = () => {
   const { currentTab } = state;
 
   return (
-    <Context.Consumer>
+    <Consumer>
       {(context) => (
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -35,7 +35,7 @@ const Tabs = () => {
           </Tab>
         </Grid>
       )}
-    </Context.Consumer>
+    </Consumer>
   );
 };
 

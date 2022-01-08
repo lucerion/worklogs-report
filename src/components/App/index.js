@@ -1,5 +1,5 @@
 import React from 'react';
-import Provider from '../../providers';
+import { Provider } from '../../store';
 import Tabs from '../Tabs';
 import './app.css';
 
