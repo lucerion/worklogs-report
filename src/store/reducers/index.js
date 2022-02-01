@@ -2,7 +2,7 @@ import { ACTION_TYPES } from '../actions';
 
 const WORKLOG_DEFAULTS = {
   timeSpent: '8h',
-  category: 'new-feature',
+  category: 'feature',
   dateStarted: new Date().toLocaleDateString(),
 };
 

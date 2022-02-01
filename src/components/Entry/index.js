@@ -4,6 +4,14 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
+const CATEGORY_MENU = {
+  feature: 'New Feature/CR implementation',
+  bug: 'Defect fixing',
+  review: 'Code Review',
+  investigations: 'Investigations',
+  environment: 'Environment setup',
+};
+
 const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
   const [state, setState] = React.useState({ id, timeSpent, category, dateStarted, description });
 
@@ -46,11 +54,9 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
           value={state.category}
           onChange={onInputChange}
         >
-          <MenuItem value="new-feature">New Feature/CR implementation</MenuItem>
-          <MenuItem value="defect-fixing">Defect fixing</MenuItem>
-          <MenuItem value="code-review">Code Review</MenuItem>
-          <MenuItem value="investigations">Investigations</MenuItem>
-          <MenuItem value="environment-setup">Environment setup</MenuItem>
+          {Object.keys(CATEGORY_MENU).map((value) => (
+            <MenuItem value={value} key={value}>{CATEGORY_MENU[value]}</MenuItem>
+          ))}
         </TextField>
       </Grid>
       <Grid item xs={4}>
@@ -71,4 +77,5 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
   );
 };
 
+export { CATEGORY_MENU };
 export default Entry;

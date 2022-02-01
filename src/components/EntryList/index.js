@@ -5,9 +5,9 @@ import Entry from '../Entry';
 
 const EntryList = ({ worklogs, addWorklog, changeWorklog, deleteWorklog }) => {
   const renderEntries = () => (
-    Object.values(worklogs).map((props) => {
-      return <Entry key={props.id} onChange={changeWorklog} onRemove={deleteWorklog} {...props} />;
-    })
+    Object.values(worklogs).map((props) => (
+      <Entry key={props.id} onChange={changeWorklog} onRemove={deleteWorklog} {...props} />
+    ))
   );
 
   return (
