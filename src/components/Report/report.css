@@ -1,7 +1,4 @@
-.report-entry {
+.report-worklog {
+  font: 16px sans-serif;
   margin-bottom: 20px;
-}
-
-.report-description {
-  margin-left: 20px;
 }
