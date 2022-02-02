@@ -1,8 +1,11 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import AdapterDayjs from '@mui/lab/AdapterDayjs';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
 
 const CATEGORY_MENU = {
   feature: 'New Feature/CR implementation',
@@ -15,12 +18,12 @@ const CATEGORY_MENU = {
 const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
   const [state, setState] = React.useState({ id, timeSpent, category, dateStarted, description });
 
-  const onInputChange = (event) => {
-    const newState = {...state, [event.target.name]: event.target.value };
-
+  const change = (newState) => {
     setState(newState);
     onChange(newState);
   };
+  const onInputChange = (event) => change({...state, [event.target.name]: event.target.value });
+  const onDatePickerChange = (date) => change({...state, dateStarted: date.toISOString()});
 
   return (
     <Grid container item alignItems="center" spacing={2}>
@@ -34,15 +37,20 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
           onChange={onInputChange}
         />
       </Grid>
-      <Grid item xs={1}>
-        <TextField
-          label="Date Started"
-          variant="outlined"
-          fullWidth
-          name="dateStarted"
-          value={state.dateStarted}
-          onChange={onInputChange}
-        />
+      <Grid item xs={2}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="Date Started"
+            variant="outlined"
+            fullWidth
+            name="dateStarted"
+            value={state.dateStarted}
+            onChange={onDatePickerChange}
+            inputFormat="DD/MMM/YYYY"
+            mask="__/___/____"
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
       </Grid>
       <Grid item xs={3}>
         <TextField

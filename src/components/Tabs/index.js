@@ -1,8 +1,8 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import { default as BaseTabs } from '@material-ui/core/Tabs';
-import { default as BaseTab } from '@material-ui/core/Tab';
-import Grid from '@material-ui/core/Grid';
+import Paper from '@mui/material/Paper';
+import { default as BaseTabs } from '@mui/material/Tabs';
+import { default as BaseTab } from '@mui/material/Tab';
+import Grid from '@mui/material/Grid';
 import Tab from '../Tab';
 import EntryList from '../EntryList';
 import Report from '../Report';
