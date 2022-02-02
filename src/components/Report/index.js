@@ -4,9 +4,12 @@ import { Consumer } from '../../store';
 import { CATEGORIES, DATE_FORMAT } from '../../const';
 import './report.css';
 
+const DESCRIPTIONS_SEPARATOR = '\n';
+
 const Report = () => {
-  const formatDescription = (description) => (
-    description && description.split('\n').map((description, index) => <div key={index}>{description}</div>)
+  const formatDescription = (descriptions) => (
+    descriptions &&
+      descriptions.split(DESCRIPTIONS_SEPARATOR).map((description, index) => <div key={index}>{description}</div>)
   );
 
   const formatDate = (date) => dayjs(date).format(DATE_FORMAT);
@@ -32,9 +35,11 @@ const Report = () => {
     </div>
   );
 
+  const renderWorklogs = (worklogs) => Object.values(worklogs).map((worklog) => renderWorklog(worklog));
+
   return (
     <Consumer>
-      {({worklogs}) => Object.values(worklogs).map((worklog) => renderWorklog(worklog)) }
+      {({worklogs}) => renderWorklogs(worklogs)}
     </Consumer>
   );
 };

@@ -11,12 +11,18 @@ import { CATEGORIES, DATE_FORMAT } from '../../const';
 const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
   const [state, setState] = React.useState({ id, timeSpent, category, dateStarted, description });
 
-  const change = (newState) => {
+  const onInputChange = (event) => {
+    const newState = event.target ?
+      {...state, [event.target.name]: event.target.value } :
+      {...state, dateStarted: event.toISOString()};
+
     setState(newState);
     onChange(newState);
   };
-  const onInputChange = (event) => change({...state, [event.target.name]: event.target.value });
-  const onDatePickerChange = (date) => change({...state, dateStarted: date.toISOString()});
+
+  const renderCategoriesDropdown = () => (
+    Object.keys(CATEGORIES).map((value) => <MenuItem value={value} key={value}>{CATEGORIES[value]}</MenuItem>)
+  );
 
   return (
     <Grid container item alignItems="center" spacing={2}>
@@ -38,7 +44,7 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
             fullWidth
             name="dateStarted"
             value={state.dateStarted}
-            onChange={onDatePickerChange}
+            onChange={onInputChange}
             inputFormat={DATE_FORMAT}
             renderInput={(params) => <TextField {...params} />}
           />
@@ -54,9 +60,7 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
           value={state.category}
           onChange={onInputChange}
         >
-          {Object.keys(CATEGORIES).map((value) => (
-            <MenuItem value={value} key={value}>{CATEGORIES[value]}</MenuItem>
-          ))}
+          {renderCategoriesDropdown()}
         </TextField>
       </Grid>
       <Grid item xs={4}>
