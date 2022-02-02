@@ -6,14 +6,7 @@ import Button from '@mui/material/Button';
 import AdapterDayjs from '@mui/lab/AdapterDayjs';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
-
-const CATEGORY_MENU = {
-  feature: 'New Feature/CR implementation',
-  bug: 'Defect fixing',
-  review: 'Code Review',
-  investigations: 'Investigations',
-  environment: 'Environment setup',
-};
+import { CATEGORIES, DATE_FORMAT } from '../../const';
 
 const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
   const [state, setState] = React.useState({ id, timeSpent, category, dateStarted, description });
@@ -46,8 +39,7 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
             name="dateStarted"
             value={state.dateStarted}
             onChange={onDatePickerChange}
-            inputFormat="DD/MMM/YYYY"
-            mask="__/___/____"
+            inputFormat={DATE_FORMAT}
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
@@ -62,8 +54,8 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
           value={state.category}
           onChange={onInputChange}
         >
-          {Object.keys(CATEGORY_MENU).map((value) => (
-            <MenuItem value={value} key={value}>{CATEGORY_MENU[value]}</MenuItem>
+          {Object.keys(CATEGORIES).map((value) => (
+            <MenuItem value={value} key={value}>{CATEGORIES[value]}</MenuItem>
           ))}
         </TextField>
       </Grid>
@@ -85,5 +77,4 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
   );
 };
 
-export { CATEGORY_MENU };
 export default Entry;

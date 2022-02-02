@@ -1,6 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import { CATEGORY_MENU } from '../Entry';
+import { CATEGORIES, DATE_FORMAT } from '../../const';
 import './report.css';
 
 const Report = ({ worklogs }) => {
@@ -8,7 +8,7 @@ const Report = ({ worklogs }) => {
     description && description.split('\n').map((description, index) => <div key={index}>{description}</div>)
   );
 
-  const formatDate = (date) => dayjs(date).format('DD/MMM/YYYY');
+  const formatDate = (date) => dayjs(date).format(DATE_FORMAT);
 
   return Object.values(worklogs).map(({ id, timeSpent, dateStarted, category, description }) => (
     <div className="report-entry" key={id}>
@@ -22,7 +22,7 @@ const Report = ({ worklogs }) => {
       </div>
       <div>
         <b>Category: </b>
-        {CATEGORY_MENU[category]}
+        {CATEGORIES[category]}
       </div>
       <div>
         <b>Description: </b>
