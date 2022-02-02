@@ -5,17 +5,19 @@ import Worklog from './Worklog';
 import { Consumer } from '../../store';
 
 const Worklogs = () => {
-  const renderEntries = (worklogs, changeWorklog, deleteWorklog) => (
-    Object.values(worklogs).map((props) => (
-      <Worklog key={props.id} onChange={changeWorklog} onRemove={deleteWorklog} {...props} />
-    ))
+  const renderWorklog = (props, onChange, onRemove) => (
+    <Worklog key={props.id} onChange={onChange} onRemove={onRemove} {...props} />
+  );
+
+  const renderWorklogs = (worklogs, onChange, onRemove) => (
+    Object.values(worklogs).map((props) => renderWorklog(props, onChange, onRemove))
   );
 
   return (
     <Consumer>
       {({ worklogs, addWorklog, changeWorklog, deleteWorklog }) => (
         <Grid container spacing={4}>
-          {renderEntries(worklogs, changeWorklog, deleteWorklog)}
+          {renderWorklogs(worklogs, changeWorklog, deleteWorklog)}
           <Grid item xs={2}>
             <Button fullWidth variant="outlined" color="primary" size="large" onClick={addWorklog}>Add worklog</Button>
           </Grid>
