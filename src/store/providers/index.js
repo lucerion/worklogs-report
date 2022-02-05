@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import PropTypes from 'prop-types';
 import reducers from '../reducers';
 import { addWorklog, changeWorklog, deleteWorklog } from '../actions';
 import Context from '../contexts';
@@ -24,6 +25,10 @@ const Provider = ({ children }) => {
       {children}
     </Context.Provider>
   );
+};
+
+Provider.propTypes = {
+  children: PropTypes.PropTypes.elementType,
 };
 
 export default Provider;

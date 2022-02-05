@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Worklog from './Worklog';
@@ -25,6 +26,10 @@ const Worklogs = () => {
       )}
     </Consumer>
   );
+};
+
+Worklogs.propTypes = {
+  id: PropTypes.string,
 };
 
 export default Worklogs;

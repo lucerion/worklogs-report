@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -8,7 +9,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import { CATEGORIES, DATE_FORMAT } from '../../const';
 
-const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
+const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
   const [state, setState] = React.useState({ id, timeSpent, category, dateStarted, description });
 
   const onInputChange = (event) => {
@@ -81,4 +82,14 @@ const Entry = ({ id, timeSpent, category, dateStarted, description, onChange, on
   );
 };
 
-export default Entry;
+Worklog.propTypes = {
+  id: PropTypes.string,
+  timeSpent: PropTypes.string,
+  category: PropTypes.string,
+  dateStarted: PropTypes.string,
+  description: PropTypes.string,
+  onChange: PropTypes.func,
+  onRemove: PropTypes.func,
+};
+
+export default Worklog;
