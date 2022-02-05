@@ -10,14 +10,12 @@ import DatePicker from '@mui/lab/DatePicker';
 import { CATEGORIES, DATE_FORMAT } from '../../const';
 
 const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
-  const [state, setState] = React.useState({ id, timeSpent, category, dateStarted, description });
+  const worklog = {id, timeSpent, category, dateStarted, description};
 
   const onInputChange = (event) => {
-    const newState = event.target ?
-      {...state, [event.target.name]: event.target.value } :
-      {...state, dateStarted: event.toISOString()};
+    const data = event.target;
+    const newState = data ? {...worklog, [data.name]: data.value } : {...worklog, dateStarted: event.toISOString()};
 
-    setState(newState);
     onChange(newState);
   };
 
@@ -33,7 +31,7 @@ const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, 
           variant="outlined"
           fullWidth
           name="timeSpent"
-          value={state.timeSpent}
+          value={timeSpent}
           onChange={onInputChange}
         />
       </Grid>
@@ -44,7 +42,7 @@ const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, 
             variant="outlined"
             fullWidth
             name="dateStarted"
-            value={state.dateStarted}
+            value={dateStarted}
             onChange={onInputChange}
             inputFormat={DATE_FORMAT}
             renderInput={(params) => <TextField {...params} />}
@@ -58,7 +56,7 @@ const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, 
           variant="outlined"
           fullWidth
           name="category"
-          value={state.category}
+          value={category}
           onChange={onInputChange}
         >
           {renderCategoriesDropdown()}
@@ -71,19 +69,19 @@ const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, 
           variant="outlined"
           fullWidth
           name="description"
-          value={state.description}
+          value={description}
           onChange={onInputChange}
         />
       </Grid>
       <Grid item xs={1}>
-        <Button variant="outlined" color="secondary" size="large" onClick={() => onRemove(state)}>x</Button>
+        <Button variant="outlined" color="secondary" size="large" onClick={() => onRemove(worklog)}>x</Button>
       </Grid>
     </Grid>
   );
 };
 
 Worklog.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   timeSpent: PropTypes.string,
   category: PropTypes.string,
   dateStarted: PropTypes.string,

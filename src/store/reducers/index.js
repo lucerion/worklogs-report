@@ -2,32 +2,28 @@ import { ACTION_TYPES } from '../actions';
 import { WORKLOG_DEFAULTS } from '../../const';
 
 const reducers = (state, action) => {
-  const { worklog } = action;
+  const { worklog, type } = action;
   const { worklogs } = state;
+  const { addWorklog, changeWorklog, deleteWorklog } = ACTION_TYPES;
 
-  switch (action.type) {
-  case ACTION_TYPES.addWorklog: {
+  switch (type) {
+  case addWorklog: {
     const ids = Object.keys(worklogs);
-    const lastElementID = ids[ids.length - 1];
-    const worklog = {
-      id: lastElementID ? parseInt(lastElementID) + 1 : 1,
-      timeSpent: WORKLOG_DEFAULTS.timeSpent,
-      category: WORKLOG_DEFAULTS.category,
-      dateStarted: WORKLOG_DEFAULTS.dateStarted,
-    };
+    const lastID = ids[ids.length - 1];
+    const id = lastID ? parseInt(lastID) + 1 : 0;
 
-    return { ...state, worklogs: { ...worklogs, [worklog.id]: worklog }};
+    return { ...state, worklogs: { ...worklogs, [id]: { ...WORKLOG_DEFAULTS, id }}};
   }
-  case ACTION_TYPES.changeWorklog:
+  case changeWorklog:
     return { ...state, worklogs: { ...worklogs, [worklog.id]: worklog }};
-  case ACTION_TYPES.deleteWorklog: {
+  case deleteWorklog: {
     const newWorklogs = {...worklogs};
     delete newWorklogs[worklog.id];
 
     return { ...state, worklogs: newWorklogs };
   }
   default:
-    throw new Error(`'${action.type}' not found!`);
+    throw new Error(`'${type}' not found!`);
   }
 };
 
