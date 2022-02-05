@@ -9,9 +9,7 @@ const INITIAL_STATE = {
 };
 
 const Provider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducers, INITIAL_STATE);
-
-  const { worklogs } = state;
+  const [{ worklogs }, dispatch] = useReducer(reducers, INITIAL_STATE);
 
   const value = {
     worklogs: worklogs,

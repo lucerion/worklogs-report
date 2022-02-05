@@ -6,12 +6,9 @@ import Worklog from './Worklog';
 import { Consumer } from '../../store';
 
 const Worklogs = () => {
-  const renderWorklog = (props, onChange, onRemove) => (
-    <Worklog key={props.id} onChange={onChange} onRemove={onRemove} {...props} />
-  );
-
   const renderWorklogs = (worklogs, onChange, onRemove) => (
-    Object.values(worklogs).map((props) => renderWorklog(props, onChange, onRemove))
+    Object.values(worklogs).map((props) =>
+      <Worklog key={props.id} onChange={onChange} onRemove={onRemove} {...props} />)
   );
 
   return (
