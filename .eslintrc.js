@@ -24,6 +24,7 @@ module.exports = {
     'max-len': ['error', { 'code': 120 }],
     'comma-dangle': ['error', 'always-multiline'],
     'no-console': ['error', { 'allow': ['warn', 'error'] }],
+    'no-unused-vars': ['error', { 'varsIgnorePattern': '^_', 'argsIgnorePattern': '^_' }],
   },
   'settings': {
     'react': {
