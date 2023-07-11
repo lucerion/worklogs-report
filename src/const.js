@@ -1,14 +1,8 @@
+import CATEGORIES from '../categories.json';
+
 const WORKLOG_DEFAULTS = {
   timeSpent: '8h',
-  category: 'feature',
-};
-
-const CATEGORIES = {
-  feature: 'New Feature/CR implementation',
-  bug: 'Defect fixing',
-  review: 'Code Review',
-  investigations: 'Investigations',
-  environment: 'Environment setup',
+  category: Object.keys(CATEGORIES)[0],
 };
 
 const DATE_FORMAT = 'DD/MMM/YYYY';
