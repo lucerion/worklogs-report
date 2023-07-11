@@ -3,16 +3,18 @@
 Worklogs report generator
 
 
-## Installation
+## Installation and usage
 
-    yarn install
+* install packages
 
+        yarn install
 
-## Usage
+* prepare categories file
 
-    yarn start
+        yarn setup
 
+* edit `categories.json`
 
-## Linter
+* start app
 
-    yarn lint
+        yarn start
