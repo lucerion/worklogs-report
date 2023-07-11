@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import AdapterDayjs from '@mui/lab/AdapterDayjs';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
 import { CATEGORIES, DATE_FORMAT } from '../../const';
+import { Input, Date, Select, Textarea } from '../Fields';
 
 const Worklog = ({ id, timeSpent, category, dateStarted, ticket, description, onChange, onRemove }) => {
-  const worklog = {id, timeSpent, category, dateStarted, ticket, description};
+  const worklog = { id, timeSpent, category, dateStarted, ticket, description };
 
   const onInputChange = (event) => {
     const data = event.target;
@@ -19,65 +15,45 @@ const Worklog = ({ id, timeSpent, category, dateStarted, ticket, description, on
     onChange(newState);
   };
 
-  const renderCategoriesDropdown = () => (
-    Object.keys(CATEGORIES).map((value) => <MenuItem value={value} key={value}>{CATEGORIES[value]}</MenuItem>)
-  );
-
   return (
     <Grid container item alignItems="center" spacing={2}>
       <Grid item xs={1}>
-        <TextField
+        <Input
           label="Time spent"
-          variant="outlined"
-          fullWidth
           name="timeSpent"
           value={timeSpent}
           onChange={onInputChange}
         />
       </Grid>
       <Grid item xs={1}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="Date Started"
-            variant="outlined"
-            fullWidth
-            name="dateStarted"
-            value={dateStarted}
-            onChange={onInputChange}
-            inputFormat={DATE_FORMAT}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
+        <Date
+          label="Date Started"
+          name="dateStarted"
+          value={dateStarted}
+          onChange={onInputChange}
+          format={DATE_FORMAT}
+        />
       </Grid>
       <Grid item xs={2}>
-        <TextField
-          select
+        <Select
           label="Category"
-          variant="outlined"
-          fullWidth
           name="category"
           value={category}
           onChange={onInputChange}
-        >
-          {renderCategoriesDropdown()}
-        </TextField>
+          items={CATEGORIES}
+        />
       </Grid>
       <Grid item xs={3}>
-        <TextField
+        <Input
           label="Ticket"
-          variant="outlined"
-          fullWidth
           name="ticket"
           value={ticket}
           onChange={onInputChange}
         />
       </Grid>
       <Grid item xs={4}>
-        <TextField
-          multiline
+        <Textarea
           label="Description"
-          variant="outlined"
-          fullWidth
           name="description"
           value={description}
           onChange={onInputChange}
