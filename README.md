@@ -1,4 +1,6 @@
-# Worklogs generator
+# Worklogs report
+
+Worklogs report generator
 
 
 ## Installation

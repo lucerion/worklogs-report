@@ -1,8 +1,8 @@
 {
-  "name": "worklogs-generator",
+  "name": "worklogs-report",
   "version": "0.0.1",
-  "description": "Worklogs generator",
-  "repository": "https://github.com/lucerion/worklogs-generator",
+  "description": "Worklogs report generator",
+  "repository": "https://github.com/lucerion/worklogs-report",
   "author": "Alexander Skachko <alexander.skachko@gmail.com>",
   "scripts": {
     "start": "webpack serve --mode development --env development --hot",
