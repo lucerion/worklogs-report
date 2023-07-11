@@ -26,7 +26,7 @@ const Provider = ({ children }) => {
 };
 
 Provider.propTypes = {
-  children: PropTypes.PropTypes.elementType,
+  children: PropTypes.node,
 };
 
 export default Provider;

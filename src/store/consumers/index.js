@@ -9,7 +9,7 @@ const Consumer = ({ children }) => (
 );
 
 Consumer.propTypes = {
-  children: PropTypes.PropTypes.elementType,
+  children: PropTypes.node,
 };
 
 export default Consumer;

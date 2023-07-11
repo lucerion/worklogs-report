@@ -9,8 +9,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import { CATEGORIES, DATE_FORMAT } from '../../const';
 
-const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, onRemove }) => {
-  const worklog = {id, timeSpent, category, dateStarted, description};
+const Worklog = ({ id, timeSpent, category, dateStarted, ticket, description, onChange, onRemove }) => {
+  const worklog = {id, timeSpent, category, dateStarted, ticket, description};
 
   const onInputChange = (event) => {
     const data = event.target;
@@ -35,7 +35,7 @@ const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, 
           onChange={onInputChange}
         />
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={1}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             label="Date Started"
@@ -49,7 +49,7 @@ const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, 
           />
         </LocalizationProvider>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <TextField
           select
           label="Category"
@@ -61,6 +61,16 @@ const Worklog = ({ id, timeSpent, category, dateStarted, description, onChange, 
         >
           {renderCategoriesDropdown()}
         </TextField>
+      </Grid>
+      <Grid item xs={3}>
+        <TextField
+          label="Ticket"
+          variant="outlined"
+          fullWidth
+          name="ticket"
+          value={ticket}
+          onChange={onInputChange}
+        />
       </Grid>
       <Grid item xs={4}>
         <TextField
@@ -85,6 +95,7 @@ Worklog.propTypes = {
   timeSpent: PropTypes.string,
   category: PropTypes.string,
   dateStarted: PropTypes.string,
+  ticket: PropTypes.string,
   description: PropTypes.string,
   onChange: PropTypes.func,
   onRemove: PropTypes.func,
