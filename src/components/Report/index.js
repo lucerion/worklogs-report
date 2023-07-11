@@ -15,7 +15,7 @@ const Report = () => {
   const formatDate = (date) => dayjs(date).format(DATE_FORMAT);
 
   const renderWorklogs = (worklogs) =>
-    Object.values(worklogs).map(({ id, timeSpent, dateStarted, category, description }) => (
+    Object.values(worklogs).map(({ id, timeSpent, dateStarted, category, ticket, description }) => (
       <div className="report-worklog" key={id}>
         <div>
           <b>Time spent: </b>
@@ -28,6 +28,10 @@ const Report = () => {
         <div>
           <b>Category: </b>
           {CATEGORIES[category]}
+        </div>
+        <div>
+          <b>Ticket: </b>
+          {ticket}
         </div>
         <div>
           <b>Description: </b>

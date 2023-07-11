@@ -18,7 +18,7 @@ Tab.propTypes = {
   xs: PropTypes.number,
   value: PropTypes.number,
   index: PropTypes.number,
-  children: PropTypes.PropTypes.elementType,
+  children: PropTypes.node,
 };
 
 export default Tab;
