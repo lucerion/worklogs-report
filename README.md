@@ -18,3 +18,8 @@ Worklogs report generator
 * start app
 
         yarn start
+
+
+## License
+
+        [BSD-3-Clause](LICENSE)
