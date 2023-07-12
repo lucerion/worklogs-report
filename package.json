@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Worklogs report generator",
   "repository": "https://github.com/lucerion/worklogs-report",
+  "license": "BSD-3-Clause",
   "author": "Alexander Skachko <alexander.skachko@gmail.com>",
   "scripts": {
     "setup": "cp ./categories.example.json ./categories.json",
