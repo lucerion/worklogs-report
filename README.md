@@ -3,7 +3,7 @@
 Worklogs report generator
 
 
-## Installation and usage
+## Setup and usage
 
 * install packages
 
@@ -19,7 +19,17 @@ Worklogs report generator
 
         yarn start
 
+### Docker
+
+* build image
+
+        docker build -t worklogs-report .
+
+* run
+
+        docker run -p 8080:8080 worklogs-report
+
 
 ## License
 
-        [BSD-3-Clause](LICENSE)
+[BSD-3-Clause](LICENSE)
