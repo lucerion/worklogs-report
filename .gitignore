@@ -2,3 +2,4 @@ package.lock
 node_modules
 yarn-error.log
 categories.json
+dist
