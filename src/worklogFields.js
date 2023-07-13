@@ -1,13 +1,6 @@
 import FIELDS from '../fields.json';
 import { Input, Select, Date, Textarea } from './components/Fields';
-import { DATE_FORMAT } from './const';
-
-const FIELD_TYPES = {
-  string: 'string',
-  select: 'select',
-  date: 'date',
-  text: 'text',
-};
+import { DATE_FORMAT, FIELD_TYPES, TEXT_SEPARATOR } from './const';
 
 const COMPONENT_TYPES = {
   [FIELD_TYPES.string]: Input,
@@ -16,57 +9,44 @@ const COMPONENT_TYPES = {
   [FIELD_TYPES.text]: Textarea,
 };
 
-const camelize = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+const camelize = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase());
 
-const validateRequired = (value, errorMessage) => {
-  if (value) {
-    return;
-  }
+const throwError = (errorMessage, field) => {
+  const stringifiedField = JSON.stringify(field);
 
-  throw new Error(errorMessage);
+  throw new Error(`${errorMessage}\nField: ${stringifiedField}`);
 };
-
-const setNameAndLabel = (name, props) => ({ ...props, name: camelize(name), label: name });
-const setDefaultValue = (defaultValue, props) => ({ ...props, value: defaultValue || '' });
-const setSelectValues = (values, props) => {
-  const items = values.reduce((acc, value) => ({ ...acc, [camelize(value)]: value }), {});
-  return { ...props, items };
-};
-const setDateFormat = (props) => ({ ...props, format: DATE_FORMAT });
 
 const mapProps = ({ type, name, defaultValue, values }) => {
-  let props = {};
+  let props = { name: camelize(name), label: name };
 
-  validateRequired(name, '"name" attribute is required.');
-  props = setNameAndLabel(name, props);
-
-  if (type !== FIELD_TYPES.date) {
-    props = setDefaultValue(defaultValue, props);
+  switch(type) {
+  case FIELD_TYPES.string:
+    return { ...props, value: defaultValue || '' };
+  case FIELD_TYPES.select:
+    return {
+      ...props,
+      value: camelize(defaultValue) || '',
+      items: values.reduce((acc, value) => ({ ...acc, [camelize(value)]: value }), {}),
+    };
+  case FIELD_TYPES.date:
+    return { ...props, format: DATE_FORMAT };
+  case FIELD_TYPES.text:
+    return { ...props, value: values.join(TEXT_SEPARATOR)};
   }
-
-  if (type === FIELD_TYPES.select) {
-    validateRequired(values, '"values" attribute is required for select type.');
-    props = setSelectValues(values, props);
-    props = setDefaultValue(camelize(defaultValue), props);
-  }
-
-  if (type === FIELD_TYPES.date) {
-    props = setDateFormat(props);
-  }
-
-  return props;
 };
 
 const WORKLOG_FIELDS = FIELDS.map((field) => {
-  const { type, size } = field;
+  const { type, name, values } = field;
   const component = COMPONENT_TYPES[type];
+  const size = field.size || 1;
 
-  if (!component) {
-    throw new Error(`Component with type '${type}' doesn't exist.`);
-  }
+  if (!type) throwError('"type" attribute is required.', field);
+  if (!component) throwError(`component with type '${type}' doesn't exist.`, field);
+  if (!name) throwError('"name" attribute is required.', field);
+  if (type === FIELD_TYPES.select && !values) throwError('"values" attribute is required for select.', field);
 
-  return { type, component, componentProps: mapProps(field), size: size || 1 };
+  return { type, component, componentProps: mapProps(field), size};
 });
 
-export { FIELD_TYPES };
 export default WORKLOG_FIELDS;
