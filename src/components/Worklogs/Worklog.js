@@ -1,80 +1,47 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { createElement } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import { CATEGORIES, DATE_FORMAT } from '../../const';
-import { Input, Date, Select, Textarea } from '../Fields';
+import { Consumer } from '../../store';
+import WORKLOG_FIELDS from '../../worklogFields';
 
-const Worklog = ({ id, timeSpent, category, dateStarted, ticket, description, onChange, onRemove }) => {
-  const worklog = { id, timeSpent, category, dateStarted, ticket, description };
+const Worklog = (props) => {
+  const onInputChange = (event, name, changeWorklog) => {
+    const input = event.target;
+    const isDatePicker = input === undefined;
+    const newValue = isDatePicker ? event.toISOString() : input.value;
+    const newState = { ...props, [name]: newValue };
 
-  const onInputChange = (event) => {
-    const data = event.target;
-    const newState = data ? {...worklog, [data.name]: data.value } : {...worklog, dateStarted: event.toISOString()};
-
-    onChange(newState);
+    changeWorklog(newState);
   };
 
-  return (
-    <Grid container item alignItems="center" spacing={2}>
-      <Grid item xs={1}>
-        <Input
-          label="Time spent"
-          name="timeSpent"
-          value={timeSpent}
-          onChange={onInputChange}
-        />
-      </Grid>
-      <Grid item xs={1}>
-        <Date
-          label="Date Started"
-          name="dateStarted"
-          value={dateStarted}
-          onChange={onInputChange}
-          format={DATE_FORMAT}
-        />
-      </Grid>
-      <Grid item xs={2}>
-        <Select
-          label="Category"
-          name="category"
-          value={category}
-          onChange={onInputChange}
-          items={CATEGORIES}
-        />
-      </Grid>
-      <Grid item xs={3}>
-        <Input
-          label="Ticket"
-          name="ticket"
-          value={ticket}
-          onChange={onInputChange}
-        />
-      </Grid>
-      <Grid item xs={4}>
-        <Textarea
-          label="Description"
-          name="description"
-          value={description}
-          onChange={onInputChange}
-        />
-      </Grid>
-      <Grid item xs={1}>
-        <Button variant="outlined" color="secondary" size="large" onClick={() => onRemove(worklog)}>x</Button>
-      </Grid>
-    </Grid>
-  );
-};
+  const renderWorklogFields = (changeWorklog) => (
+    WORKLOG_FIELDS.map(({ component, componentProps, size }, index) => {
+      const { name } = componentProps;
+      const value = props[name];
+      const onChange = (event) => onInputChange(event, name, changeWorklog);
 
-Worklog.propTypes = {
-  id: PropTypes.number,
-  timeSpent: PropTypes.string,
-  category: PropTypes.string,
-  dateStarted: PropTypes.string,
-  ticket: PropTypes.string,
-  description: PropTypes.string,
-  onChange: PropTypes.func,
-  onRemove: PropTypes.func,
+      return (
+        <Grid item xs={size} key={index}>
+          {createElement(component, { ...componentProps, value, onChange })}
+        </Grid>
+      );
+    })
+  );
+
+  return (
+    <Consumer>
+      {({ changeWorklog, deleteWorklog }) => (
+        <Grid container item alignItems="center" spacing={2}>
+          {renderWorklogFields(changeWorklog)}
+          <Grid item xs={1}>
+            <Button variant="outlined" color="secondary" size="large" onClick={() => deleteWorklog(props)}>
+              x
+            </Button>
+          </Grid>
+        </Grid>
+      )}
+    </Consumer>
+  );
 };
 
 export default Worklog;

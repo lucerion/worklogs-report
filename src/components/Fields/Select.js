@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 const Select = ({ label, name, value, onChange, items }) => {
   const renderItems = (items) => (
-    Object.keys(items).map((value) => <MenuItem value={value} key={value}>{items[value]}</MenuItem>)
+    Object.keys(items).map((key) => <MenuItem value={key} key={key}>{items[key]}</MenuItem>)
   );
 
   return (

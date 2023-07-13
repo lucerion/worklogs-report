@@ -9,11 +9,11 @@ Worklogs report generator
 
         yarn install
 
-* prepare categories file
+* prepare fields file
 
         yarn setup
 
-* edit `categories.json`
+* edit `fields.json`
 
 * start app
 

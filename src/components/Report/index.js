@@ -1,44 +1,43 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { Consumer } from '../../store';
-import { CATEGORIES, DATE_FORMAT } from '../../const';
+import { DATE_FORMAT } from '../../const';
+import WORKLOG_FIELDS, { FIELD_TYPES } from '../../worklogFields';
 import './report.css';
 
 const DESCRIPTIONS_SEPARATOR = '\n';
 
 const Report = () => {
-  const formatDescription = (descriptions) => (
-    descriptions &&
-      descriptions.split(DESCRIPTIONS_SEPARATOR).map((description, index) => <div key={index}>{description}</div>)
-  );
-
-  const formatDate = (date) => dayjs(date).format(DATE_FORMAT);
-
   const renderWorklogs = (worklogs) =>
-    Object.values(worklogs).map(({ id, timeSpent, dateStarted, category, ticket, description }) => (
-      <div className="report-worklog" key={id}>
-        <div>
-          <b>Time spent: </b>
-          {timeSpent}
-        </div>
-        <div>
-          <b>Date Started: </b>
-          {formatDate(dateStarted)}
-        </div>
-        <div>
-          <b>Category: </b>
-          {CATEGORIES[category]}
-        </div>
-        <div>
-          <b>Ticket: </b>
-          {ticket}
-        </div>
-        <div>
-          <b>Description: </b>
-          {formatDescription(description)}
-        </div>
+    Object.values(worklogs).map((worklog, index) => (
+      <div className="report-worklog" key={index}>
+        {renderWorklog(worklog)}
       </div>
     ));
+
+  const renderWorklog = (worklog) => (
+    WORKLOG_FIELDS.map((field, index) => (
+      <div key={index}>
+        <b>{field.componentProps.label}: </b>
+        {fieldValue(field, worklog)}
+      </div>
+    ))
+  );
+
+  const fieldValue = ({ type, componentProps: { name, items }}, worklog) => {
+    const value = worklog[name];
+
+    switch (type) {
+    case FIELD_TYPES.select:
+      return items[value];
+    case FIELD_TYPES.date:
+      return dayjs(value).format(DATE_FORMAT);
+    case FIELD_TYPES.text:
+      return value.split(DESCRIPTIONS_SEPARATOR).map((line, index) => <div key={index}>{line}</div>);
+    default:
+      return value;
+    }
+  };
 
   return (
     <Consumer>
