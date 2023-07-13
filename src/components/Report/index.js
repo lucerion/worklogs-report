@@ -1,11 +1,9 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { Consumer } from '../../store';
-import { DATE_FORMAT } from '../../const';
-import WORKLOG_FIELDS, { FIELD_TYPES } from '../../worklogFields';
+import { DATE_FORMAT, FIELD_TYPES, TEXT_SEPARATOR } from '../../const';
+import WORKLOG_FIELDS from '../../worklogFields';
 import './report.css';
-
-const DESCRIPTIONS_SEPARATOR = '\n';
 
 const Report = () => {
   const renderWorklogs = (worklogs) =>
@@ -33,7 +31,7 @@ const Report = () => {
     case FIELD_TYPES.date:
       return dayjs(value).format(DATE_FORMAT);
     case FIELD_TYPES.text:
-      return value.split(DESCRIPTIONS_SEPARATOR).map((line, index) => <div key={index}>{line}</div>);
+      return value.split(TEXT_SEPARATOR).map((line, index) => <div key={index}>{line}</div>);
     default:
       return value;
     }
