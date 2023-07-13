@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Time spent",
+        "type": "string",
+        "defaultValue": "8h"
+    },
+    {
+        "name": "Date Started",
+        "type": "date"
+    },
+    {
+        "name": "Category",
+        "type": "select",
+        "values": [
+            "Feature",
+            "Bug",
+            "Code Review",
+            "Investigation",
+            "Environment Setup"
+        ],
+        "defaultValue": "Feature",
+        "size": 2
+    },
+    {
+        "name": "Ticket",
+        "type": "string",
+        "size": 3
+    },
+    {
+        "name": "Description",
+        "type": "text",
+        "size": 4
+    }
+]

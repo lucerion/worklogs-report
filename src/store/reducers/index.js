@@ -1,5 +1,5 @@
 import { ACTION_TYPES } from '../actions';
-import { WORKLOG_DEFAULTS } from '../../const';
+import WORKLOG_FIELDS from '../../worklogFields';
 
 const reducers = (state, action) => {
   const { worklog, type } = action;
@@ -12,7 +12,12 @@ const reducers = (state, action) => {
     const lastID = ids[ids.length - 1];
     const id = lastID ? parseInt(lastID) + 1 : 0;
 
-    return { ...state, worklogs: { ...worklogs, [id]: { ...WORKLOG_DEFAULTS, id }}};
+    const newWorklog = WORKLOG_FIELDS.reduce(
+      (acc, { componentProps: { name, value }}) => ({ ...acc, [name]: value }),
+      { id },
+    );
+
+    return { ...state, worklogs: { ...worklogs, [id]: newWorklog }};
   }
   case changeWorklog:
     return { ...state, worklogs: { ...worklogs, [worklog.id]: worklog }};

@@ -6,7 +6,7 @@
   "license": "BSD-3-Clause",
   "author": "Alexander Skachko <alexander.skachko@gmail.com>",
   "scripts": {
-    "setup": "cp ./categories.example.json ./categories.json",
+    "setup": "cp ./fields.example.json ./fields.json",
     "start": "webpack serve --mode development --env development --hot",
     "build": "webpack --mode production",
     "lint": "eslint ."
