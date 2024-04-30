@@ -32,7 +32,7 @@ const mapProps = ({ type, name, defaultValue, values }) => {
   case FIELD_TYPES.date:
     return { ...props, format: DATE_FORMAT };
   case FIELD_TYPES.text:
-    return { ...props, value: values.join(TEXT_SEPARATOR)};
+    return { ...props, value: values ? values.join(TEXT_SEPARATOR) : ''};
   }
 };
 

@@ -6,8 +6,7 @@ import { Consumer } from '../../store';
 
 const Worklogs = () => {
   const renderWorklogs = (worklogs) => (
-    Object.values(worklogs).map((worklog) =>
-      <Worklog key={worklog.id} {...worklog} />)
+    Object.values(worklogs).map((worklog) => <Worklog key={worklog.id} {...worklog} />)
   );
 
   return (
