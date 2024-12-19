@@ -6,7 +6,8 @@
     },
     {
         "name": "Date Started",
-        "type": "date"
+        "type": "date",
+        "size": 2
     },
     {
         "name": "Category",
@@ -24,7 +25,7 @@
     {
         "name": "Ticket",
         "type": "string",
-        "size": 3
+        "size": 2
     },
     {
         "name": "Description",
