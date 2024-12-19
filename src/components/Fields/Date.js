@@ -10,12 +10,11 @@ const Date = ({ label, name, value, format, onChange }) => (
     <DatePicker
       label={label}
       variant="outlined"
-      fullWidth
       name={name}
       value={value}
       onChange={onChange}
       inputFormat={format}
-      renderInput={(params) => <TextField {...params} />}
+      renderInput={(params) => <TextField fullWidth {...params} />}
     />
   </LocalizationProvider>
 );
