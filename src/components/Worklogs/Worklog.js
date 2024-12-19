@@ -31,9 +31,9 @@ const Worklog = (props) => {
   return (
     <Consumer>
       {({ changeWorklog, deleteWorklog }) => (
-        <Grid container item alignItems="center" spacing={2}>
+        <Grid container item spacing={2}>
           {renderWorklogFields(changeWorklog)}
-          <Grid item xs={1}>
+          <Grid container item xs={1} justifyContent="center" alignItems="center">
             <Button variant="outlined" color="secondary" size="large" onClick={() => deleteWorklog(props)}>
               x
             </Button>
