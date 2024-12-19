@@ -7,9 +7,9 @@ RUN apt-get update -qq && \
 
 WORKDIR /worklogs-report
 
-RUN yarn setup
-
 COPY . .
+
+RUN yarn setup
 
 RUN yarn install
 
