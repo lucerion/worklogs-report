@@ -4,8 +4,11 @@ import { Consumer } from '../../store';
 import { DATE_FORMAT, FIELD_TYPES, TEXT_SEPARATOR } from '../../const';
 import WORKLOG_FIELDS from '../../worklogFields';
 import './report.css';
+import reportTemplate from '../../../report-template.html';
 
 const Report = () => {
+  const renderTemplate = new Function('field', `return \`${reportTemplate}\`;`);
+
   const renderWorklogs = (worklogs) =>
     Object.values(worklogs).map((worklog, index) => (
       <div className="report-worklog" key={index}>
@@ -14,12 +17,13 @@ const Report = () => {
     ));
 
   const renderWorklog = (worklog) => (
-    WORKLOG_FIELDS.map((field, index) => (
-      <div key={index}>
-        <b>{field.componentProps.label}: </b>
-        {fieldValue(field, worklog)}
-      </div>
-    ))
+    WORKLOG_FIELDS.map((field, index) => {
+      const templateString = renderTemplate({ name: field.componentProps.label, value: fieldValue(field, worklog) });
+
+      return (
+        <div key={index} dangerouslySetInnerHTML={{ __html: templateString }} />
+      );
+    })
   );
 
   const fieldValue = ({ type, componentProps: { name, items }}, worklog) => {
@@ -31,7 +35,7 @@ const Report = () => {
     case FIELD_TYPES.date:
       return dayjs(value).format(DATE_FORMAT);
     case FIELD_TYPES.text:
-      return value.split(TEXT_SEPARATOR).map((line, index) => <div key={index}>{line}</div>);
+      return value.split(TEXT_SEPARATOR).map((value) => `<div>${value}</div>`).join('');
     default:
       return value;
     }

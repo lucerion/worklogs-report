@@ -2,4 +2,5 @@ package.lock
 node_modules
 yarn-error.log
 fields.json
+report-template.html
 dist

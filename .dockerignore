@@ -3,6 +3,7 @@ node_modules
 .dockerignore
 .eslintignore
 .eslintrc.js
-categories.example.json
+fields.example.json
+report-template.example.html
 Dockerfile
 LICENSE
