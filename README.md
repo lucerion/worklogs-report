@@ -1,3 +1,5 @@
+> Deprecated. Use [RepoFormer](https://github.com/lucerion/repoformer) instead.
+
 # Worklogs report
 
 Worklogs report generator
