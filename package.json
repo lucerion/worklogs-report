@@ -13,19 +13,20 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
-    "@mui/lab": "^5.0.0-alpha.67",
-    "@mui/material": "^5.4.0",
-    "@mui/x-date-pickers": "5.0.20",
-    "dayjs": "^1.10.7",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/lab": "^9.0.0-beta.9",
+    "@mui/material": "^9.4.0",
+    "@mui/x-date-pickers": "^9.13.0",
+    "dayjs": "^1.11.23",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@vitejs/plugin-react": "^6.1.1",
-    "eslint": "^8.7.0",
-    "eslint-plugin-react": "^7.28.0",
-    "vite": "^8.2.2"
+    "eslint": "^10.10.0",
+    "eslint-plugin-react": "^7.37.5",
+    "vite": "^8.3.0"
   }
 }

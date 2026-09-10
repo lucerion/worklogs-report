@@ -14,7 +14,7 @@ const Tabs = () => {
   return (
     <Provider>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item size={12}>
           <Paper square>
             <MuiTabs value={currentTab} onChange={(_event, value) => selectTab(value)}>
               <MuiTab label="Worklogs" />
