@@ -4,7 +4,7 @@ import { Consumer } from '../../store';
 import { DATE_FORMAT, FIELD_TYPES, TEXT_SEPARATOR } from '../../const';
 import WORKLOG_FIELDS from '../../worklogFields';
 import './report.css';
-import reportTemplate from '../../../report-template.html';
+import reportTemplate from '../../../report-template.html?raw';
 
 const Report = () => {
   const renderTemplate = new Function('field', `return \`${reportTemplate}\`;`);

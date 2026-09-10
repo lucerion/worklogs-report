@@ -4,9 +4,8 @@
 
 node_modules/
 
+vite.config.js
 .eslint*.
-webpack.config.js
-.babelrc
 
 .dockerignore
 
