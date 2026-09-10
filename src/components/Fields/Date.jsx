@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import PropTypes from 'prop-types';
+import TextField from '@mui/material/TextField';
 
 const Date = ({ label, name, value, format, onChange }) => (
   <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -20,11 +19,11 @@ const Date = ({ label, name, value, format, onChange }) => (
 );
 
 Date.propTypes = {
+  format: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string,
-  format: PropTypes.string,
   onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default Date;

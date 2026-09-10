@@ -1,6 +1,7 @@
 import { ACTION_TYPES } from '../actions';
 import WORKLOG_FIELDS from '../../worklogFields';
 
+// eslint-disable-next-line max-statements
 const reducers = (state, action) => {
   const { worklog, type } = action;
   const { worklogs } = state;
@@ -9,8 +10,10 @@ const reducers = (state, action) => {
   switch (type) {
   case addWorklog: {
     const ids = Object.keys(worklogs);
+    // eslint-disable-next-line no-magic-numbers
     const lastID = ids[ids.length - 1];
-    const id = lastID ? parseInt(lastID) + 1 : 0;
+    // eslint-disable-next-line no-magic-numbers
+    const id = lastID ? parseInt(lastID, 10) + 1 : 0;
 
     const newWorklog = WORKLOG_FIELDS.reduce(
       (acc, { componentProps: { name, value }}) => ({ ...acc, [name]: value }),

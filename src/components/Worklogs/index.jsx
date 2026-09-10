@@ -1,8 +1,7 @@
-import React from 'react';
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Worklog from './Worklog';
 import { Consumer } from '../../store';
+import Grid from '@mui/material/Grid';
+import Worklog from './Worklog';
 
 const Worklogs = () => {
   const renderWorklogs = (worklogs) => (

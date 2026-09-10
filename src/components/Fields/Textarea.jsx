@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 
@@ -17,8 +16,8 @@ const Textarea = ({ label, name, value, onChange }) => (
 Textarea.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string,
   onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default Textarea;

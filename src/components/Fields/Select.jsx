@@ -1,11 +1,10 @@
-import React from 'react';
+import MenuItem from '@mui/material/MenuItem';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 
 const Select = ({ label, name, value, onChange, items }) => {
-  const renderItems = (items) => (
-    Object.keys(items).map((key) => <MenuItem value={key} key={key}>{items[key]}</MenuItem>)
+  const renderItems = (selectItems) => (
+    Object.keys(selectItems).map((key) => <MenuItem value={key} key={key}>{items[key]}</MenuItem>)
   );
 
   return (
@@ -24,11 +23,11 @@ const Select = ({ label, name, value, onChange, items }) => {
 };
 
 Select.propTypes = {
+  items: PropTypes.object,
   label: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string,
   onChange: PropTypes.func,
-  items: PropTypes.object,
+  value: PropTypes.string,
 };
 
 export default Select;

@@ -1,15 +1,16 @@
-import React from 'react';
-import Paper from '@mui/material/Paper';
-import { default as MuiTabs } from '@mui/material/Tabs';
-import { default as MuiTab } from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
+import { default as MuiTab } from '@mui/material/Tab';
+import { default as MuiTabs } from '@mui/material/Tabs';
+import Paper from '@mui/material/Paper';
 import { Provider } from '../../store';
+import React from 'react';
+import Report from '../Report';
 import Tab from './Tab';
 import Worklogs from '../Worklogs';
-import Report from '../Report';
 
 const Tabs = () => {
-  const [currentTab, selectTab] = React.useState(0);
+  const DEFAULT_TAB = 0;
+  const [currentTab, selectTab] = React.useState(DEFAULT_TAB);
 
   return (
     <Provider>

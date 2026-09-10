@@ -1,7 +1,7 @@
 const FIELD_TYPES = {
-  string: 'string',
-  select: 'select',
   date: 'date',
+  select: 'select',
+  string: 'string',
   text: 'text',
 };
 

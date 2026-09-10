@@ -1,6 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
+import PropTypes from 'prop-types';
 
 const Tab = ({ xs, value, index, children }) => (
   <Grid
@@ -15,10 +14,10 @@ const Tab = ({ xs, value, index, children }) => (
 );
 
 Tab.propTypes = {
-  xs: PropTypes.number,
-  value: PropTypes.number,
-  index: PropTypes.number,
   children: PropTypes.node,
+  index: PropTypes.number,
+  value: PropTypes.number,
+  xs: PropTypes.number,
 };
 
 export default Tab;

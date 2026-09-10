@@ -1,13 +1,13 @@
-import React, { createElement } from 'react';
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Consumer } from '../../store';
+import { createElement } from 'react';
+import Grid from '@mui/material/Grid';
 import WORKLOG_FIELDS from '../../worklogFields';
 
 const Worklog = (props) => {
   const onInputChange = (event, name, changeWorklog) => {
     const input = event.target;
-    const isDatePicker = input === undefined;
+    const isDatePicker = typeof input === 'undefined';
     const newValue = isDatePicker ? event.toISOString() : input.value;
     const newState = { ...props, [name]: newValue };
 
@@ -22,7 +22,7 @@ const Worklog = (props) => {
 
       return (
         <Grid item xs={size} key={index}>
-          {createElement(component, { ...componentProps, value, onChange })}
+          {createElement(component, { ...componentProps, onChange, value })}
         </Grid>
       );
     })
