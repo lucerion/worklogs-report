@@ -2,17 +2,16 @@
 .github
 .gitignore
 
-node_modules/
+node_modules
 
 vite.config.js
 .eslint*.
 
 .dockerignore
+Dockerfile
 
 fields.example.json
 report-template.example.html
-
-Dockerfile
 
 LICENSE
 README.md
