@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_VERSION=${NODE_VERSION:-22}
+        - YARN_VERSION=${YARN_VERSION:-1.22.22}
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/worklogs-report
+      - /worklogs-report/node_modules
