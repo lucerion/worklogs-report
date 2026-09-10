@@ -1,6 +1,10 @@
-package.lock
-node_modules
-yarn-error.log
+node_modules/
+dist
+
+.env*
+!.env.example
+
 fields.json
 report-template.html
-dist
+
+*.log
